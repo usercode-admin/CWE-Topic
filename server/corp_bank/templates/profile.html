@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp - User Profile</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/admin"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            {% if session.get('role') == 'admin' %}
+                <a href="/admin">Dashboard</a>
+            {% endif %}
+            <a href="/logout" style="color: #990000;">Log Out</a>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 600px;">
+        <div class="panel">
+            <h2>Corporate User Profile</h2>
+            <p style="font-size: 13px; color: #666;">Manage your account identity and profile settings.</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="{{ user_info['avatar'] }}" alt="Avatar" style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #4a0082;">
+            </div>
+
+            <form method="POST">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" value="{{ user_info['username'] }}" disabled style="background: #f1f1f1;">
+                </div>
+                <div class="form-group">
+                    <label>Full Name:</label>
+                    <input type="text" value="{{ user_info['fullname'] }}" disabled style="background: #f1f1f1;">
+                </div>
+                <div class="form-group">
+                    <label>Avatar Image URL:</label>
+                    <input type="text" name="avatar" value="{{ user_info['avatar'] }}" required>
+                </div>
+                <div class="form-group">
+                    <label>Professional Bio:</label>
+                    <textarea name="bio" rows="3" required>{{ user_info['bio'] }}</textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Update Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp Financial Solutions, Inc. Profile Management.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

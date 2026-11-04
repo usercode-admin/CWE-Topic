@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp Financial Solutions - We Care About You</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo">
+        </div>
+        <div class="nav-links">
+            <span id="datetime" style="font-size: 13px; color: #666; margin-right: 15px;"></span>
+            <a href="/infrastructure">Infrastructure</a>
+            <a href="/login">Client Portal Login</a>
+            <a href="/register">Register</a>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>We Care About You.</h1>
+            <p>Our site is currently down while we perform temporary maintenance in order to better serve you.</p>
+            <p>We apologize for any inconvenience.</p>
+            <p><strong>We'll be back soon!</strong></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Global Financial Operations</h2>
+            <p style="line-height: 1.6; font-size: 14px; color: #444;">
+                E Corp is a multinational conglomerate with broad financial services, technology infrastructure, and consumer holdings. Our secure banking network connects millions of accounts globally, providing enterprise-grade asset management and retail financial solutions.
+            </p>
+            <br>
+            <a href="/login" class="btn" style="text-decoration: none; display: inline-block;">Access Secure Portal</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp (Evil Corp) Financial Solutions, Inc. All rights reserved. 
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp - Infrastructure Status</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Client Portal</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Server Infrastructure & Hardware Telemetry</h2>
+            <p style="font-size: 13px; color: #666;">Live hardware metrics from the central Linux host server node.</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+
+            <div style="display: flex; gap: 20px; margin-bottom: 25px;">
+                <div style="background: #f1f1f1; padding: 15px; flex: 1; border-left: 4px solid #4a0082;">
+                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #666;">RAM USAGE</p>
+                    <p style="margin: 0; font-size: 18px; font-weight: bold; color: #4a0082;" id="sys-ram-text">Loading...</p>
+                    <div style="background: #ddd; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                        <div id="sys-ram-bar" style="background: #4a0082; height: 100%; width: 0%;"></div>
+                    </div>
+                </div>
+                <div style="background: #f1f1f1; padding: 15px; flex: 1; border-left: 4px solid #007700;">
+                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #666;">STORAGE DISK USAGE</p>
+                    <p style="margin: 0; font-size: 18px; font-weight: bold; color: #007700;" id="sys-disk-text">Loading...</p>
+                    <div style="background: #ddd; height: 8px; border-radius: 4px; margin-top: 8px; overflow: hidden;">
+                        <div id="sys-disk-bar" style="background: #007700; height: 100%; width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="retro-table">
+                <tr><th>Metric Parameter</th><th>Live System Value</th></tr>
+                <tr><td>Host OS / Kernel</td><td id="sys-os">-</td></tr>
+                <tr><td>Hostname</td><td id="sys-hostname">-</td></tr>
+                <tr><td>CPU Architecture & Cores</td><td id="sys-cpu">-</td></tr>
+                <tr><td>Disk Allocation (Used / Total)</td><td id="sys-disk-detail">-</td></tr>
+                <tr><td>RAM Memory (Used / Total)</td><td id="sys-ram-detail">-</td></tr>
+                <tr><td>Server Runtime Uptime</td><td id="sys-uptime">-</td></tr>
+                <tr><td>Python Environment</td><td id="sys-pyver">-</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp Financial Solutions, Inc. Infrastructure Division.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

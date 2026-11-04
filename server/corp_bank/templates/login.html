@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp Secure Authentication Portal</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/register">Register Account</a>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 480px; margin-top: 60px;">
+        <div class="panel">
+            <h2>Secure Banking Sign In</h2>
+            <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Please enter your corporate credentials to proceed.</p>
+            
+            {% if error %}
+                <div class="alert-error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" name="username" placeholder="administrator or Elliot" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp (Evil Corp) Financial Solutions, Inc. Secure Authentication Gateway.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

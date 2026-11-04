@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp Account Registration Portal</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login">Sign In</a>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 480px; margin-top: 60px;">
+        <div class="panel">
+            <h2>New Account Enrollment</h2>
+            <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Open your E Corp consumer banking portfolio.</p>
+            
+            {% if error %}
+                <div class="alert-error">{{ error }}</div>
+            {% endif %}
+            
+            <div id="alert-box" style="display: none; background: #ffebe8; color: #990000; padding: 10px; margin-bottom: 15px; border: 1px solid #dd3c10; font-size: 13px; font-weight: bold;">
+                ⚠️ This username already exists in the central database!
+            </div>
+
+            <form method="POST" action="/register">
+                <div class="form-group">
+                    <label>Full Name:</label>
+                    <input type="text" name="fullname" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="username-input" name="username" placeholder="Choose username" required>
+                    <span id="username-status" style="font-size: 12px; margin-top: 4px; display: block;"></span>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" name="password" placeholder="Choose password" required>
+                </div>
+                <button type="submit" id="submit-btn" class="btn" style="width: 100%; margin-top: 10px;">Register Account</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp (Evil Corp) Financial Solutions, Inc. Registration Division.
+    </footer>
+    <script>
+        $(document).ready(function() {
+            $('#username-input').on('blur', function() {
+                var username = $(this).val().trim();
+                if (username.length > 0) {
+                    $.getJSON('/api/check_username?username=' + encodeURIComponent(username), function(data) {
+                        if (data.exists) {
+                            $('#alert-box').fadeIn();
+                            $('#username-status').css('color', '#990000').text('❌ Username is already taken.');
+                            $('#submit-btn').prop('disabled', true).css('opacity', '0.6');
+                        } else {
+                            $('#alert-box').fadeOut();
+                            $('#username-status').css('color', '#007700').text('✔ Username is available.');
+                            $('#submit-btn').prop('disabled', false).css('opacity', '1');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
