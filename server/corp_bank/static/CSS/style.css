@@ -1,0 +1,131 @@
+/* E Corp Corporate Retro Style (2010-2015) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+}
+header {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 12px 40px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container img {
+    height: 42px;
+}
+.nav-links a {
+    color: #4a0082;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+}
+.hero-section {
+    position: relative;
+    background: #4a0082 url('https://raw.githubusercontent.com/usercode-admin/Background/main/backgr.png') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 90px 40px;
+    min-height: 340px;
+}
+.hero-content {
+    max-width: 650px;
+}
+.hero-content h1 {
+    font-size: 44px;
+    margin-bottom: 15px;
+    font-weight: normal;
+    letter-spacing: -0.5px;
+}
+.hero-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.container {
+    max-width: 960px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+.panel {
+    background: #fcfcfc;
+    border: 1px solid #dfdfdf;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.panel h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #4a0082;
+    border-bottom: 2px solid #4a0082;
+    padding-bottom: 8px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #b5b5b5;
+    border-radius: 0px;
+    font-size: 14px;
+}
+.btn {
+    background: #4a0082;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+.btn:hover {
+    background: #370060;
+}
+.alert-error {
+    background: #ffebe8;
+    color: #990000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dd3c10;
+    font-size: 13px;
+}
+table.retro-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+table.retro-table th, table.retro-table td {
+    border: 1px solid #d0d0d0;
+    padding: 10px;
+    text-align: left;
+    font-size: 13px;
+}
+table.retro-table th {
+    background-color: #f1f1f1;
+    color: #222;
+}
+footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+    color: #666666;
+    border-top: 1px solid #eeeeee;
+    margin-top: 60px;
+    background: #f9f9f9;
+}
