@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp Management & Control Panel</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/profile">My Profile</a>
+            <a href="/infrastructure">Infrastructure Node</a>
+            <span style="font-size: 13px; color: #4a0082; font-weight: bold; margin-left: 15px;">Logged in as: {{ session.get('username') }}</span>
+            <a href="/logout" style="color: #990000;">Log Out</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Account Control Dashboard</h2>
+            <p>Welcome back, <strong>{{ session.get('fullname') }}</strong>.</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+            
+            <div style="display: flex; gap: 20px; margin-bottom: 25px; align-items: center;">
+                <div>
+                    <img src="{{ session.get('avatar') }}" alt="Avatar" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #ccc;">
+                </div>
+                <div style="background: #f1f1f1; padding: 15px; flex: 1; border-left: 4px solid #4a0082;">
+                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #666;">ACCOUNT ID / SESSION</p>
+                    <p style="margin: 0; font-size: 15px; font-weight: bold;">{{ session.get('username') }}</p>
+                </div>
+                <div style="background: #f1f1f1; padding: 15px; flex: 1; border-left: 4px solid #4a0082;">
+                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #666;">ACCESS PRIVILEGE</p>
+                    <p style="margin: 0; font-size: 15px; font-weight: bold;">{{ session.get('role').upper() }}</p>
+                </div>
+                <div style="background: #f1f1f1; padding: 15px; flex: 1; border-left: 4px solid #4a0082;">
+                    <p style="margin: 0 0 5px 0; font-size: 11px; color: #666;">CREDIT BALANCE</p>
+                    <p style="margin: 0; font-size: 15px; font-weight: bold; color: #007700;">${{ "{:,.2f}".format(session.get('balance') or 0.0) }}
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="color: #4a0082; margin-top: 30px;">System Administrator Directory</h3>
+            <p style="font-size: 13px; color: #555;">Complete records queried directly from E Corp central database:</p>
+            
+            <table class="retro-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Avatar</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Full Name</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                        <th>Last Login</th>
+                        <th>Admin Controls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usr in users_list %}
+                    <tr>
+                        <td>{{ usr['id'] }}</td>
+                        <td><img src="{{ usr['avatar'] }}" style="width: 30px; height: 30px; object-fit: cover;"></td>
+                        <td><code>{{ usr['username'] }}</code></td>
+                        <td style="color: #990000;"><code>{{ usr['password'] }}</code></td>
+                        <td>{{ usr['fullname'] }}</td>
+                        <td>${{ "{:,.2f}".format(usr['balance']) }}</td>
+                        <td>
+                            {% if usr['status'] == 'Online' %}<span style="color: green; font-weight: bold;">● Online</span>
+                            {% else %}<span style="color: gray;">○ Offline</span>{% endif %}
+                        </td>
+                        <td style="font-size: 11px;">{{ usr['last_login'] }}</td>
+                        <td>
+                            <a href="/admin/info/{{ usr['id'] }}" style="color: white; background: #0044aa; padding: 3px 6px; text-decoration: none; font-size: 11px; font-weight: bold; margin-right: 3px;">Info</a>
+                            {% if usr['id'] != 1 %}
+                                {% if usr['is_blocked'] == 1 %}
+                                    <a href="/admin/block/{{ usr['id'] }}" style="color: white; background: #e65100; padding: 3px 6px; text-decoration: none; font-size: 11px; font-weight: bold; margin-right: 3px;">Unblock</a>
+                                {% else %}
+                                    <a href="/admin/block/{{ usr['id'] }}" style="color: white; background: #d84315; padding: 3px 6px; text-decoration: none; font-size: 11px; font-weight: bold; margin-right: 3px;">Block</a>
+                                {% endif %}
+                                <a href="/admin/delete/{{ usr['id'] }}" onclick="return confirm('Permanently delete this user?');" style="color: white; background: #990000; padding: 3px 6px; text-decoration: none; font-size: 11px; font-weight: bold;">Delete</a>
+                            {% else %}<span style="color: #aaa; font-size: 11px;">Protected</span>{% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp (Evil Corp) Financial Solutions, Inc. Internal Network Portal.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

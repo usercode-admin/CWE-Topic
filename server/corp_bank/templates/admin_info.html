@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E Corp - Audit Account Info</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/admin"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/admin">Return to Dashboard</a>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 600px;">
+        <div class="panel">
+            <h2>Account Audit Information</h2>
+            <p style="font-size: 13px; color: #666;">Detailed record inspection for user ID: {{ target_user['id'] }}</p>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="{{ target_user['avatar'] }}" alt="Avatar" style="width: 90px; height: 90px; object-fit: cover; border: 2px solid #4a0082;">
+            </div>
+
+            <table class="retro-table">
+                <tr><th>Field</th><th>Recorded Value</th></tr>
+                <tr><td>ID</td><td>{{ target_user['id'] }}</td></tr>
+                <tr><td>Username</td><td><code>{{ target_user['username'] }}</code></td></tr>
+                <tr><td>Password</td><td style="color: #990000;"><code>{{ target_user['password'] }}</code></td></tr>
+                <tr><td>Full Name</td><td>{{ target_user['fullname'] }}</td></tr>
+                <tr><td>Balance</td><td>${{ "{:,.2f}".format(target_user['balance']) }}</td></tr>
+                <tr><td>Role</td><td><strong>{{ target_user['role'] }}</strong></td></tr>
+                <tr><td>Status</td><td>{{ target_user['status'] }}</td></tr>
+                <tr><td>Last Login</td><td>{{ target_user['last_login'] }}</td></tr>
+                <tr><td>Bio</td><td>{{ target_user['bio'] }}</td></tr>
+                <tr><td>Security Block Status</td><td>{% if target_user['is_blocked'] == 1 %}<span style="color:red;">Blocked</span>{% else %}<span style="color:green;">Active</span>{% endif %}</td></tr>
+            </table>
+            <br>
+            <a href="/admin" class="btn" style="text-decoration: none; display: inline-block; text-align: center;">Back to Control Panel</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp Financial Solutions, Inc. Audit Division.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

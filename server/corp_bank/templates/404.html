@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404 Page Not Found - E Corp</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="https://raw.githubusercontent.com/usercode-admin/Background/main/ecorp_logo.png" alt="E Corp Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Return Home</a>
+        </div>
+    </header>
+
+    <div class="container" style="text-align: center; margin-top: 80px;">
+        <div class="panel" style="display: inline-block; width: 100%; max-width: 600px; text-align: left;">
+            <h2 style="color: #990000; border-bottom-color: #990000;">Error 404 - Resource Not Found</h2>
+            <p style="font-size: 15px; line-height: 1.6; color: #333;">
+                The requested URL or corporate document you are looking for does not exist on the E Corp secure network.
+            </p>
+            <br>
+            <a href="/" class="btn" style="text-decoration: none; display: inline-block;">Back to Homepage</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2014 E Corp (Evil Corp) Financial Solutions, Inc. Error Gateway.
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
